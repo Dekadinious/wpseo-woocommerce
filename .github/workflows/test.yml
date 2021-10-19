@@ -179,7 +179,7 @@ jobs:
           # Force a `composer update` run.
           dependency-versions: "highest"
           # But make it selective.
-          composer-options: "yoast/wp-test-utils --with-dependencies"
+          composer-options: "yoast/wp-test-utils yoast/wordpress-seo --with-dependencies"
 
       - name: Install Composer dependencies - WP < 5.9 with PHP >= 8
         if: ${{ steps.composer_toggle.outputs.TYPE == '2' }}
@@ -188,7 +188,7 @@ jobs:
           # Force a `composer update` run.
           dependency-versions: "highest"
           # But make it selective.
-          composer-options: "yoast/wp-test-utils phpunit/phpunit --with-dependencies --ignore-platform-req=php"
+          composer-options: "yoast/wp-test-utils phpunit/phpunit yoast/wordpress-seo --with-dependencies --ignore-platform-req=php"
 
       - name: Install Composer dependencies
         if: ${{ steps.composer_toggle.outputs.TYPE == '3' }}
