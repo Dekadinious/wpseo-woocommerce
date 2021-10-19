@@ -200,7 +200,7 @@ jobs:
       - name: Install YoastSEO dependencies
         run: |
          cd vendor/yoast/wordpress-seo
-         composer install --no-dev --no-scripts --no-interaction --ignore-platform-reqs
+         composer install --no-dev --no-interaction --ignore-platform-reqs
          cd ../../..
 
       - name: Run unit tests - single site
