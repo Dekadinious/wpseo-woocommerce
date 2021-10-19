@@ -61,7 +61,7 @@ jobs:
           # Force a `composer update` run.
           dependency-versions: "highest"
           # But make it selective.
-          composer-options: "yoast/wp-test-utils --with-dependencies"
+          composer-options: "yoast/wp-test-utils yoast/wordpress-seo --with-dependencies"
 
       # For PHP 8.0+, we need to install with ignore platform reqs (temporarily YoastSEO has been fixed).
       - name: Install Composer dependencies (PHP 8.0+)
@@ -71,7 +71,7 @@ jobs:
           # Force a `composer update` run.
           dependency-versions: "highest"
           # But make it selective.
-          composer-options: "yoast/wp-test-utils --with-dependencies --ignore-platform-req=php"
+          composer-options: "yoast/wp-test-utils yoast/wordpress-seo --with-dependencies --ignore-platform-req=php"
 
       - name: "DEBUG: check whether this is a rate limit issue"
         if: ${{ failure() }}
