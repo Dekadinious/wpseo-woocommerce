@@ -46,6 +46,9 @@ jobs:
           # Token is needed for the YoastSEO install via VCS.
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Add the GitHub token to prevent running into rate limits
+        run: composer config github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
+
       - name: Remove the PHP platform requirement
         run: composer config --unset platform.php
 
@@ -69,6 +72,10 @@ jobs:
           dependency-versions: "highest"
           # But make it selective.
           composer-options: "yoast/wp-test-utils --with-dependencies --ignore-platform-req=php"
+
+      - name: "DEBUG: check whether this is a rate limit issue"
+        if: ${{ failure() }}
+        run: curl -i https://api.github.com/users/octocat
 
       - name: Run unit tests
         run: composer test
