@@ -42,15 +42,27 @@ jobs:
           php-version: ${{ matrix.php_version }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: none
+        env:
+          # Token is needed for the YoastSEO install via VCS.
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove the PHP platform requirement
+        run: composer config --unset platform.php
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: Install Composer dependencies (PHP < 7.2)
-        if: ${{ matrix.php_version < '7.2' }}
+      - name: Install Composer dependencies (PHP < 8.0)
+        if: ${{ matrix.php_version < '8.0' }}
         uses: ramsey/composer-install@v1
+        with:
+          # Force a `composer update` run.
+          dependency-versions: "highest"
+          # But make it selective.
+          composer-options: "yoast/wp-test-utils --with-dependencies"
 
-      - name: Install Composer dependencies (PHP 7.2+)
-        if: ${{ matrix.php_version >= '7.2' }}
+      # For PHP 8.0+, we need to install with ignore platform reqs (temporarily YoastSEO has been fixed).
+      - name: Install Composer dependencies (PHP 8.0+)
+        if: ${{ matrix.php_version >= '8.0' }}
         uses: ramsey/composer-install@v1
         with:
           # Force a `composer update` run.
