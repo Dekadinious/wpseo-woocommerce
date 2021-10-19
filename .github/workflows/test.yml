@@ -197,11 +197,11 @@ jobs:
       - name: Install WP
         run: scripts/install-wp-tests.sh wordpress_test root '' 127.0.0.1:3306 ${{ matrix.wp_version }}
 
-      - name: Install YoastSEO dependencies
-        run: |
-         cd vendor/yoast/wordpress-seo
-         composer install --no-dev --no-interaction --ignore-platform-reqs
-         cd ../../..
+#      - name: Install YoastSEO dependencies
+#        run: |
+#         cd vendor/yoast/wordpress-seo
+#         composer install --no-dev --no-interaction --ignore-platform-reqs
+#         cd ../../..
 
       - name: Run unit tests - single site
         if: ${{ matrix.multisite == false }}
