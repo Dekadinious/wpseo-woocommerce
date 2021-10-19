@@ -220,6 +220,7 @@ jobs:
 # Questions:
 # - YoastSEO is already being installed via Composer. Why is it being cloned as well in the Travis workflow ?
 # - Why is the YoastSEO in Composer using the "dev" repo, while the clone in Travis is being done from the dist repo ?
+#   => I suppose due to the scripts and the committed vendor repo in dist ? If so, why is the composer.json file not pointing to dist ?
 # - Why all the moving around of the YoastSEO repo ? Why not use the WP_PLUGIN_DIR environment variable ?
 # - [TESTING] Is the separate `composer install` for YoastSEO really needed ?
 
