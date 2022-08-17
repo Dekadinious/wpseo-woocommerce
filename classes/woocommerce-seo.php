@@ -74,8 +74,8 @@ class Yoast_WooCommerce_SEO {
 			// Move Woo box above SEO box.
 			add_action( 'admin_footer', [ $this, 'footer_js' ] );
 
-			new WPSEO_WooCommerce_Yoast_Tab();
-			new WPSEO_WooCommerce_Yoast_Ids();
+			$wpseo_woocommerce_yoast_tab = new WPSEO_WooCommerce_Yoast_Tab();
+			$wpseo_woocommerce_yoast_ids = new WPSEO_WooCommerce_Yoast_Ids();
 		}
 		else {
 			// Initialize schema & OpenGraph.
